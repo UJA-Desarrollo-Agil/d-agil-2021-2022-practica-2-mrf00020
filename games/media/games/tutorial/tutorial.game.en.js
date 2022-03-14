@@ -32,11 +32,17 @@ undum.game.situations = {
         "<h1>26 de Diciembre, Vacaciones de Navidad</h1>\
 		<img src='media/games/tutorial/invierno.jpg' class='float_right'>\
         <p class='transient'> Despiertas en tu cama el día 26 de Diciembre, ha pasado ya el día de navidad, te llamas Gus, tienes 22 años.\
-        Te levantas de la cama y buscas por tu casa, solo está tu perro Puck, puedes <a href='hub'>jugar con él.</a></p>\
+        Te levantas de la cama y buscas por tu casa, solo está tu perro Puck, <a href='./mejora-carisma'>puedes jugar con él.</a></p>\
         \
-        <p class='transient'>O puedes irte a  <a href='hub'>desayunar\
-	</a></p>"
-		
+        <p class='transient'>O puedes irte a  desayunar </p>",
+		{
+			actions: {
+                'mejora-carisma': function(character, system, action) {
+                    system.setQuality("carisma", character.qualities.carisma+1);
+                }
+            }
+			
+		}
     ),
 
     // NB: The 'hub' situation which is the main list of topics, is
