@@ -28,22 +28,15 @@ undum.game.slideUpSpeed = 500
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
-    start: new undum.SimpleSituation(
-        "<h1>Starting Out with Undum</h1>\
-        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>Welcome to the Undum tutorial. Undum is a tool for writing\
-        hypertext interactive fiction. It has some unique features\
-        and a visual design that encourages narrative games.</p>\
+    inicio: new undum.SimpleSituation(
+        "<h1>26 de Diciembre, Vacaciones de Navidad</h1>\
+		<img src='media/games/tutorial/invierno.jpg' class='float_right'>\
+        <p class='transient'> Despiertas en tu cama el día 26 de Diciembre, ha pasado ya el día de navidad, te llamas Gus, tienes 22 años.\
+        Te levantas de la cama y buscas por tu casa, solo está tu perro Puck, puedes <a href='hub'>jugar con él.</a></p>\
         \
-        <p>Hypertext interactive fiction is the digital equivalent of the\
-        Choose Your Own Adventure (CYOA) books that were popular in the\
-        1980s. The story is told in chunks, and you select from a range\
-        of options to move it forward. Unlike the book form, however, the\
-        digital form gives you far more flexibility to tell rich stories\
-        and introduce more interesting game elements.</p>\
-        \
-        <p class='transient'>Click <a href='hub'>this link to\
-        continue...</a></p>"
+        <p class='transient'>O puedes irte a  <a href='hub'>desayunar\
+	</a></p>"
+		
     ),
 
     // NB: The 'hub' situation which is the main list of topics, is
@@ -216,35 +209,35 @@ undum.game.situations = {
         <p>The qualities there are those you started the game with. When you\
         <a href='quality-types'>go to the next situation</a>, keep your\
         eyes on the character panel. You'll notice I'll give you a boost to\
-        your stamina quality. This process is animated and highlighted to\
-        draw your attention to it. You could also get a boost of skill\
-        by carrying out <a href='./skill-boost'>this action</a> as many\
+        your carisma quality. This process is animated and highlighted to\
+        draw your attention to it. You could also get a boost of destreza\
+        by carrying out <a href='./destreza-boost'>this action</a> as many\
         times as you like.</p>",
         {
             heading: "Qualities and the Character",
             tags: ["topic"],
             displayOrder: 4,
             actions: {
-                "skill-boost": function(character, system, action) {
-                    system.setQuality("skill", character.qualities.skill+1);
+                "destreza-boost": function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
                 }
             },
             exit: function(character, system, to) {
-                system.setQuality("stamina", character.qualities.stamina+1);
+                system.setQuality("carisma", character.qualities.carisma+1);
             }
         }
     ),
     "quality-types": new undum.SimpleSituation(
         "<p>Not all the qualities in the character panel are displayed as\
         numeric. Internally they are all numeric, but different qualities\
-        get to choose how to display themselves. So 'Luck', for example, is\
+        get to choose how to display themselves. So 'suerte', for example, is\
         displayed as words (based on the FUDGE RPG's adjective scale),\
         and 'Novice' is using just a check-mark.</p>\
         \
-        <p>To see how Luck changes, try using this\
-        <a href='./luck-boost'>luck-boosting action</a> or this\
-        <a href='./luck-reduce'>luck-reducing action</a>. Notice that\
-        luck uses a numeric bonus when it runs out of words. There are a range\
+        <p>To see how suerte changes, try using this\
+        <a href='./suerte-boost'>suerte-boosting action</a> or this\
+        <a href='./suerte-reduce'>suerte-reducing action</a>. Notice that\
+        suerte uses a numeric bonus when it runs out of words. There are a range\
         of different display types provided with Undum, and you can easily\
         add your own too.</p>\
         \
@@ -259,11 +252,11 @@ undum.game.situations = {
         <p>",
         {
             actions: {
-                "luck-boost": function(character, system, action) {
-                    system.setQuality("luck", character.qualities.luck+1);
+                "suerte-boost": function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
                 },
-                "luck-reduce": function(character, system, action) {
-                    system.setQuality("luck", character.qualities.luck-1);
+                "suerte-reduce": function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte-1);
                 }
             },
             exit: function(character, system, to) {
@@ -295,8 +288,8 @@ undum.game.situations = {
     progress: new undum.SimpleSituation(
         "<p>Sometimes you want to make the change in a quality into a more\
         significant event. You can do this by animating the change in\
-        quality. If you <a href='./boost-stamina-action'>boost your\
-        stamina</a>, you will see the stamina change in the normal\
+        quality. If you <a href='./boost-carisma-action'>boost your\
+        carisma</a>, you will see the carisma change in the normal\
         way in the character panel. But you will also see a progress\
         bar appear and animate below.</p>",
         {
@@ -309,18 +302,18 @@ undum.game.situations = {
                 // the situation.  This isn't the recommended way (I
                 // could have just changed situation in the link), but
                 // it illustrates the use of doLink.
-                "boost-stamina-action": function(character, system, action) {
-                    system.doLink("boost-stamina");
+                "boost-carisma-action": function(character, system, action) {
+                    system.doLink("boost-carisma");
                 }
             },
             exit: function(character, system, to) {
                 system.animateQuality(
-                    'stamina', character.qualities.stamina+1
+                    'carisma', character.qualities.carisma+1
                 );
             }
         }
     ),
-    "boost-stamina": new undum.SimpleSituation(
+    "boost-carisma": new undum.SimpleSituation(
         "<p>\
         <img src='media/games/tutorial/woodcut3.png' class='float_right'>\
         The progress bar is also useful in situations where the\
@@ -347,39 +340,39 @@ undum.game.situations = {
     }),
 
     "implicit-boost": new undum.SimpleSituation(
-        "<p>Your luck has been boosted<span class='transient'>, check the\
+        "<p>Your suerte has been boosted<span class='transient'>, check the\
         list of options to see if they have changed</span>.</p>",
         {
             tags: ["example"],
             enter: function(character, system, from) {
-                system.animateQuality("luck", character.qualities.luck+1)
+                system.animateQuality("suerte", character.qualities.suerte+1)
                 system.doLink('example-choices');
             },
-            optionText: "Boost Your Luck",
+            optionText: "Boost Your suerte",
             displayOrder: 1,
             canView: function(character, system, host) {
-                return character.qualities.luck < 4;
+                return character.qualities.suerte < 4;
             }
         }
     ),
     "implicit-drop": new undum.SimpleSituation(
-        "<p>Your luck has been reduced<span class='transient'>, check the\
+        "<p>Your suerte has been reduced<span class='transient'>, check the\
         list of options to see if they have changed</span>.</p>",
         {
             tags: ["example"],
             enter: function(character, system, from) {
-                system.animateQuality("luck", character.qualities.luck-1)
+                system.animateQuality("suerte", character.qualities.suerte-1)
                 system.doLink('example-choices');
             },
-            optionText: "Reduce Your Luck",
+            optionText: "Reduce Your suerte",
             displayOrder: 2,
             canView: function(character, system, host) {
-                return character.qualities.luck > -4;
+                return character.qualities.suerte > -4;
             }
         }
     ),
-    "high-luck-only": new undum.SimpleSituation(
-        "<p>Your luck is higher than 'fair'. The link to this \
+    "high-suerte-only": new undum.SimpleSituation(
+        "<p>Your suerte is higher than 'fair'. The link to this \
         situation would not\
         have appeared if it were lower.</p>",
         {
@@ -387,15 +380,15 @@ undum.game.situations = {
             enter: function(character, system, from) {
                 system.doLink('example-choices');
             },
-            optionText: "High Luck Option",
+            optionText: "High suerte Option",
             displayOrder: 3,
             canView: function(character, system, host) {
-                return character.qualities.luck > 0;
+                return character.qualities.suerte > 0;
             }
         }
     ),
-    "low-luck-only": new undum.SimpleSituation(
-        "<p>Your luck is lower than 'fair'. The link to this situation \
+    "low-suerte-only": new undum.SimpleSituation(
+        "<p>Your suerte is lower than 'fair'. The link to this situation \
         appears whether\
         it is low or high, but can only be chosen if it is low. It does this\
         by defining a <em>canChoose</em> method.</p>",
@@ -404,10 +397,10 @@ undum.game.situations = {
             enter: function(character, system, from) {
                 system.doLink('example-choices');
             },
-            optionText: "Low Luck Option (requires low luck to be clickable)",
+            optionText: "Low suerte Option (requires low suerte to be clickable)",
             displayOrder: 3,
             canChoose: function(character, system, host) {
-                return character.qualities.luck < 0;
+                return character.qualities.suerte < 0;
             }
         }
     ),
@@ -439,21 +432,21 @@ undum.game.situations = {
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-undum.game.start = "start";
+undum.game.start = "inicio";
 
 // ---------------------------------------------------------------------------
 /* Here we define all the qualities that our characters could
  * possess. We don't have to be exhaustive, but if we miss one out then
  * that quality will never show up in the character bar in the UI. */
 undum.game.qualities = {
-    skill: new undum.IntegerQuality(
-        "Skill", {priority:"0001", group:'stats'}
+    destreza: new undum.IntegerQuality(
+        "Destreza", {priority:"0001", group:'stats'}
     ),
-    stamina: new undum.NumericQuality(
-        "Stamina", {priority:"0002", group:'stats'}
+    carisma: new undum.NumericQuality(
+        "Carisma", {priority:"0002", group:'stats'}
     ),
-    luck: new undum.FudgeAdjectivesQuality( // Fudge as in the FUDGE RPG
-        "<span title='Skill, Stamina and Luck are reverently borrowed from the Fighting Fantasy series of gamebooks. The words representing Luck are from the FUDGE RPG. This tooltip is illustrating that you can use any HTML in the label for a quality (in this case a span containing a title attribute).'>Luck</span>",
+    suerte: new undum.FudgeAdjectivesQuality( // Fudge as in the FUDGE RPG
+        "<span title='Destreza, Carisma and Suerte are reverently borrowed from the Fighting Fantasy series of gamebooks. The words representing suerte are from the FUDGE RPG. This tooltip is illustrating that you can use any HTML in the label for a quality (in this case a span containing a title attribute).'>Suerte</span>",
         {priority:"0003", group:'stats'}
     ),
 
@@ -480,10 +473,10 @@ undum.game.qualityGroups = {
 /* This function gets run before the game begins. It is normally used
  * to configure the character at the start of play. */
 undum.game.init = function(character, system) {
-    character.qualities.skill = 12;
-    character.qualities.stamina = 12;
-    character.qualities.luck = 0;
+    character.qualities.destreza = 12;
+    character.qualities.carisma = 0;
+    character.qualities.suerte = 0;
     character.qualities.novice = 1;
     character.qualities.inspiration = 0;
-    system.setCharacterText("<p>You are starting on an exciting journey.</p>");
+    system.setCharacterText("<p></p>");
 };
