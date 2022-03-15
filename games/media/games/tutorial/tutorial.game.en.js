@@ -130,6 +130,19 @@ undum.game.situations = {
             }
 	}
 	),
+	concer: new undum.SimpleSituation(
+	"<p>-'Venga, de lujo, he oído un par de temas de su grupo los helter skelter y me molan, además la otra banda que toca también son bastante buenos, los exiler.' </p>\
+	<p>-'Pues nos vemos a las 21:00 en la sala de conciertos, no te olvides la chupa de cuero.'</p>\
+	<p>Cuelgas y buscas tus cascos en tu habitación, cuando llevas un rato escuchando música llega tu madre de la compra, la ayudas a colocar todo y al verte tan animado ella sube la caja al trastero </p>\
+	<p>Te pasas el día con los cascos puestos escuchando la música de las dos bandas para aclimatar el cuerpo, antes de ir al concierto, le echas un vistazo al cartel.</p>\
+	<p class = transient> <img src='media/games/tutorial/cartel.jpg' class='float_right'></p>\
+	<p>Te pegas una buena ducha y <a href= 'helter'>te encaminas al concierto.</a><\p>\
+	",{
+	tags: ["topic"],
+        optionText: "Mi colega Martin tienen un concierto hoy, ¿vamos?",
+        displayOrder: 4,
+	}
+	),
 	casa: new undum.SimpleSituation(
 	"<p>-'Tío vamos a aprovechar las vacaciones de navidad que luego igual no nos vemos en unas semanas.' </p>\
 	<p>-'Uff es que no me encuentro muy allá hoy, nos vemos mañana mejor si quieres.'</p>\
@@ -137,7 +150,7 @@ undum.game.situations = {
 	",{
 	tags: ["topic"],
         optionText: "Prefiero quedarme en casa hoy bro.",
-        displayOrder: 4,
+        displayOrder: 5,
 		heading: "Final 1: Te quedas en casa y perdiste la aventura."
 	}
 	),
@@ -203,7 +216,10 @@ undum.game.situations = {
 	</p>",
 	),
 	cinema: new undum.SimpleSituation(
-	"<p>Entráis al cine decidís ver la película de Batman, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>palomitas</a> o <a class = once href='./mejora-suerte'>nachos</a>, y de bebida <a class = once href='./mejora-carisma'>7up</a> o <a class = once href='./empeora-suerte'>cocacola.</a> </p>",
+	"<p class = transient><img src='media/games/tutorial/cine.jpg' class='float_right'></p>\
+	<p>Entráis al cine decidís ver la película de Batman, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>palomitas</a> o <a class = once href='./mejora-suerte'>nachos</a>, y de bebida <a class = once href='./mejora-carisma'>7up</a> o <a class = once href='./empeora-suerte'>cocacola.</a></p>\
+	<p>Tú y tu amigo buscáis vuestras butacas y <a href='sueno'>os sentáis a disfrutar de la película.</a></p>\
+	",
 	{
 		tags: ["parte3"],
         optionText: "Vas al cine",
@@ -228,7 +244,10 @@ undum.game.situations = {
 	}
 	),
 	teatr: new undum.SimpleSituation(
-	"<p>Entráis al teatro y vais a ver Cats, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>gominolas</a> o <a class = once href='./mejora-suerte'>dulces</a>, y de bebida <a class = once href='./mejora-carisma'>batido</a> o <a class = once href='./empeora-suerte'>cerveza.</a> </p>",
+	"<p class = transient><img src='media/games/tutorial/teatro.jpg' class='float_right'></p>\
+	<p>Entráis al teatro y vais a ver Cats, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>gominolas</a> o <a class = once href='./mejora-suerte'>dulces</a>, y de bebida <a class = once href='./mejora-carisma'>batido</a> o <a class = once href='./empeora-suerte'>cerveza sin.</a> </p>\
+	<p>Tú y tu amigo buscáis vuestras butacas y <a href='sueno'>os sentáis a disfrutar de la obra de teatro.</a></p>\
+	",
 	{
 		tags: ["parte3"],
         optionText: "Vas al teatro",
@@ -252,7 +271,151 @@ undum.game.situations = {
             }
 	}
 	),
-	espec: new undum.SimpleSituation(),
+	espec: new undum.SimpleSituation(
+	"<p class = transient><img src='media/games/tutorial/patinaje.jpg' class='float_right'></p>\
+	<p>Entráis al estadio y vais a ver el espectaculo de patinaje sobre hielo, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>patatas fritas</a> y/o <a class = once href='./mejora-suerte'>chicles</a>, y de bebida <a class = once href='./mejora-carisma'>agua</a> y/o <a class = once href='./empeora-suerte'>tónica.</a> </p>\
+	<p>Tú y tu amigo buscáis vuestras butacas y <a href='sueno'>os sentáis a disfrutar del espectáculo.</a></p>\
+	",
+	{
+		tags: ["parte3"],
+        optionText: "Vas al espectaculo de patinaje en el hielo",
+        displayOrder: 3,
+		canChoose: function(character, system, host) {
+                return character.qualities.hielo > 0;
+            },
+		actions: {
+                'mejora-carisma': function(character, system, action) {
+                    system.setQuality("carisma", character.qualities.carisma+1);
+                },
+				'mejora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
+                },
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                },
+				'empeora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte-1);
+                }
+            }
+	}
+	),
+	sueno: new undum.SimpleSituation(
+	"<p>Te sientas en tu asiento y el entrenimiento te estaba gustando hasta que empiezas a sentirte extremadamente cansado, además la luz no ayuda con tanta oscuridad, empiezas a pegar cabezadas mientras nadie te ve y acabas quedándote profundamente dormido.</p>\
+	<p><a href='hub4'>Empiezas a soñar profundamente.</a></p>\
+	"
+	),
+	guerragalaxias: new undum.SimpleSituation(
+	{
+		tags: ["dormido"],
+        optionText: "Vas al espectaculo de patinaje en el hielo",
+        displayOrder: 3,
+		canChoose: function(character, system, host) {
+                return character.qualities.hielo > 0;
+            },
+		actions: {
+                'mejora-carisma': function(character, system, action) {
+                    system.setQuality("carisma", character.qualities.carisma+1);
+                },
+				'mejora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
+                },
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                },
+				'empeora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte-1);
+                }
+            }
+	}
+	),
+	cowboy: new undum.SimpleSituation(),
+	karate: new undum.SimpleSituation(),
+	helter: new undum.SimpleSituation(
+	"<p>Cuando llegas a la entrada de la sala de conciertos tu colega ya te está esperando, os saludáis y entráis.</p>\
+	<p>Hay bastante gente que conocéis, aún no ha empezado el concierto, te acercas a la barra y te pides un <a class = once href='./mejora-destreza'>7up</a> y/o un <a class = once href='./mejora-suerte'>cocktail sin alcohol.</a>\</p>\
+	<p>Te terminas la bebida y empieza el concierto de Helter Skelter, te gusta bastante el ritmo y el estilo del grupo, cuando te quieres das cuenta estás en el pogo moviendo la cabeza arriba y abajo junto a tu colega.</p>\
+	<p class = transient><img src='media/games/tutorial/concierto.jpeg' class='float_left'></p>\
+	<p class = transient><img src='media/games/tutorial/headbanging.gif' class='float_right'></p>\
+	<p>Cuando llevas un rato en el concierto a alguien se le cae la bebida al suelo, estáis todos bailando y te resbalas con el charco. <a href='hub5'>¿Serás capaz de no caerte?</a></p>\
+	",{
+		actions: {
+				'mejora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
+                },
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                }
+		}
+	}
+	),
+	caida: new undum.SimpleSituation(
+	"<p>Cuando te quieres dar cuenta estás en el suelo, te haces daño en un codo por la caída, no es nada grave ni que requiera de atención médica, pero dejas de bailar y te enturbia un poco la noche.</p>\
+		<p>Te decides irte a casa, tu colega se queda en el concierto con unos amigos mientras tú te vas a dormir.</p>\
+	",
+	{
+		tags: ["concierto1"],
+			optionText: "Te caes al suelo y te haces daño",
+			displayOrder: 1,
+			canChoose: function(character, system, host) {
+                return character.qualities.suerte <=3;
+            },
+			heading: "Final 2: Te vuelves a casa dolorido y desganado, aunque te lo pasaste bien, te lo podrías haber pasado mejor."
+	}
+	),
+	exiler: new undum.SimpleSituation(
+	"<p>Tu amigo te agarra con los reflejos de un gato y la fuerza de un titán, vuelves al pogo como el que más y te lo pasas genial.</p>\
+	<p>El concierto termina pero vosotros no habéis dejado de gritar otra otra otra.</p>\
+	<p>En el descanso entre conciertos te acercas a la barra a pedir una <a class = once href='./mejora-destreza'>botella de agua</a> para descansar de el esfuerzo.</p>\
+	<p>Una vez terminado el refrigerio, vuelves a tu lugar, frente a la tarima del concierto, te colocas junto a tu amigo y esperáis a que empiece el concierto de Exiler.</p>\
+	<p class = transient><img src='media/games/tutorial/concierto2.jpg' class='float_right'></p>\
+	<p>Cuando empiezas este concierto te unes como el que más a bailar y disfrutas de la música y el momento.</p>\
+	<p>Pasa un rato y estás en mitad del pogo y un chaval bastante grande se cae sobre ti, tienes que actuar con determinación y fuerza. <a href='hub6'>¿Lo levantas o lo esquivas?</a></p>\
+	",
+	{
+		tags: ["concierto1"],
+			optionText: "Tienes mucha suerte y alguien te agarra",
+			displayOrder: 2,
+			canChoose: function(character, system, host) {
+                return character.qualities.suerte >3;
+            },
+			actions: {
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                }
+		}
+	}
+	),
+	empujon: new undum.SimpleSituation(
+	"<p>El chaval se pega una buena caída contra el suelo aunque no se hace mucho daño, paráis un momento el concierto, él se va al baño, ve que no le ha pasado nada grave y se queda en una silla escuchando el concierto.</p>\
+	<p>El concierto sigue tras ver que el chaval se encuentra bien, sigues bailando con tus amigos y cuando termina te encuentras algo cansado pero bastante alegre por haber disfrutado tanto de buena música en compañía de tus amigos.</p>\
+	",
+	{
+		tags: ["concierto2"],
+			optionText: "Sientes que no tienes tanta fuerza como para soportarlo y te apartas.",
+			displayOrder: 1,
+			canChoose: function(character, system, host) {
+                return character.qualities.destreza <=4;
+            },
+			heading: "Final 3: Te vuelves a casa satisfecho, te lo has pasado bastante bien y esta noche quedará para el recuerdo, aunque tal vez podría haber sido algo mejor."
+	}
+	
+	
+	),
+	despues: new undum.SimpleSituation(
+	"<p>Un colega tuyo te ayuda y al final el chaval no se cae ni se hace nada, se alegra mucho y te da un abrazo por la ayuda, tú sonríes y los dos seguís bailando como si nada hubiera pasado.</p>\
+	<p>Al terminar el concierto sales fuera a que te dé el aire porque hace mucha calor dentro y estas sudando, el chaval al que salvaste se te acerca te da la mano y os quedáis un rato hablando.</p>\
+	<p>Pasa un rato y empiezan a salir los integrantes de ambas bandas, tú y tus amigos os tomáis una foto con ellos y habláis un rato, te lo pasas genial y vuelves a casa habíendotelo pasado mejor que en mucho tiempo. </p>\
+	",
+	{
+		tags: ["concierto2"],
+			optionText: "Sientes que eres capaz de sujetarlo, lo agarras como puedes.",
+			displayOrder: 2,
+			canChoose: function(character, system, host) {
+                return character.qualities.destreza >4;
+            },
+			heading: "Final 4, Good Ending: Te vuelves a casa con una foto de cada uno de los grupos, esta noche ha sido inolvidable, te prometes a ti mismo ir de concierto siempre que puedas."
+	}
+	)
 };
 
 // ---------------------------------------------------------------------------
@@ -295,7 +458,6 @@ undum.game.qualities = {
 	cinturon:new undum.NonZeroIntegerQuality(
         "Cinturón de karate", {priority:"0003", group:'sueno'}
     )
-	
 };
 
 // ---------------------------------------------------------------------------
