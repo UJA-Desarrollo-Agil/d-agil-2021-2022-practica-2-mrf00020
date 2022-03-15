@@ -561,7 +561,7 @@ undum.game.situations = {
 	",
 	{
 		tags: ["granjero"],
-        optionText: "Tus argumentos convencen a los granjeros.",
+        optionText: "Tus argumentos convencen a los granjeros. Necesitas Carisma 4.",
         displayOrder: 1,
 		canChoose: function(character, system, host) {
                 return character.qualities.carisma > 3;
@@ -624,7 +624,7 @@ undum.game.situations = {
 	",
 	{
 		tags: ["duelo"],
-        optionText: "Le disparas al forajido a la mano.",
+        optionText: "Le disparas al forajido a la mano. Necesitas Suerte 4.",
         displayOrder: 2,
 		canChoose: function(character, system, host) {
                 return character.qualities.suerte > 3;
