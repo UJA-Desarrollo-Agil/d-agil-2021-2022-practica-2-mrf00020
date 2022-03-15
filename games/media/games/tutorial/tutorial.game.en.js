@@ -307,6 +307,7 @@ undum.game.situations = {
 		canChoose: function(character, system, host) {
                 return character.qualities.espada > 0;
             },
+			//heading: "Escena 1"
 	}
 	),
 	cowboy: new undum.SimpleSituation(
@@ -328,6 +329,7 @@ undum.game.situations = {
 		canChoose: function(character, system, host) {
                 return character.qualities.sombrero > 0;
             },
+			//heading: "Escena 1"
 	}
 	),
 	//ESCENAS 0 CONCIERTO
@@ -627,14 +629,73 @@ undum.game.situations = {
 		canChoose: function(character, system, host) {
                 return character.qualities.suerte > 3;
             },
+			exit: function(character, system, to) {
+                system.setQuality("victoria", character.qualities.victoria+1);
+            },
 	}
 	),
 	
-	//Inicio Escena 2
+	//Escena 2
 	susto: new undum.SimpleSituation(
 	"<p>Te despiertas sobresaltado por el extraño sueño, intentas disfrutar de la quedada aunque no puedes del todo.\
-	En cuanto termina el evento te vas para casa con alguna excusa y te sientes bastante apesadumbrado.</p>",
-	)
+	En cuanto termina el evento te vas para casa con alguna excusa y te sientes bastante apesadumbrado. Te tumbas en la cama y <a href='hub11'>le das vueltas a lo que ha ocurrido.</a></p>",
+	{
+		heading: "Escena 2."
+	}
+	),
+	
+	finalbcowboy: new undum.SimpleSituation(
+	"<p>Te decides a disfrutar otra vez de los westerns y rememorar recuerdos que tenías con tus abuelos de la forma más sana y compartirlos con tus amigos, volviéndolo un hobby para ti.</p>",
+	{
+		tags: ["finales"],
+        optionText: "El sueño del oeste te trae muy buenos recuerdos.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return (character.qualities.sombrero > 0&& character.qualities.victoria >0);
+            },
+			heading: "Final 6 Good Ending:"
+		
+	}
+	),
+	finalmcowboy: new undum.SimpleSituation(
+	"<p>Aunque te ha gustado ese ambiente del western no te termina de gustar, lo dejas a un lado para centrarte en otros hobbys aunque siempre tendrá un bonito lugar en tus recuerdos.</p>",
+	{
+		tags: ["finales"],
+        optionText: "El sueño del oeste te trae recuerdos agridulces.",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return (character.qualities.sombrero > 0&& character.qualities.victoria <=0);
+            },
+			heading: "Final 5:"
+		
+	}
+	),
+	finalbsw: new undum.SimpleSituation(
+	"<p>Te ha gustado tanto que te decides a volver a verte las pelis y explorar en el universo expandido, además de compartirlo con amigos y volver a ver las películas con tus padres. </p>",
+	{
+		tags: ["finales"],
+        optionText: "El sueño sobre Star wars te trae buenos recuerdos.",
+        displayOrder: 4,
+		canChoose: function(character, system, host) {
+                return (character.qualities.espada > 0&& character.qualities.victoria >0);
+            },
+			heading: "Final 8 Good Ending:"
+		
+	}
+	),
+	finalmsw: new undum.SimpleSituation(
+	"<p>Te das cuenta que la ciencia ficción blanda no es lo tuyo y no te termina de gustar, igual algo como la fantasía clásica te guste más o la ciencia ficción más seria. </p>",
+	{
+		tags: ["finales"],
+        optionText: "El sueño sobre Star wars no te termina de convencer.",
+        displayOrder: 3,
+		canChoose: function(character, system, host) {
+                return (character.qualities.espada > 0&& character.qualities.victoria <=0);
+            },
+			heading: "Final 7:"
+		
+	}
+	),
 };
 
 // ---------------------------------------------------------------------------
