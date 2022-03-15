@@ -20,7 +20,8 @@ Voy a poner las situaciones básicas desarrolladas, a partir de estas se generan
  - trastero: te deja elegir entre la espada láser y el sombrero vaquero, según el que elijas tendrás un sueño u otro.
  - guerragalaxias: Da lugar a la aventura en el universo de star wars dentro de tu sueño si cogiste la espada láser.
  - cowboy: Da lugar a la aventura en el lejano oeste dentro de tu sueño si cogiste el sombrero de cowboy.
-
+ ##  Aclaración
+ Eliminé contenido que me faltó tiempo para terminar de desarrollarlo. Preferí priorizar la mejora del contenido ya casi terminado y el terminar la documentación mejor.
  ## 2. URL al tablero Trello
  Enlace al tablero:  https://trello.com/b/ihuzulaA/práctica-2-dágil
  ## 3. URL a GitHub: 
