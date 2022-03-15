@@ -136,8 +136,9 @@ undum.game.situations = {
 	<p>Cancelaste la quedada con tus amigos y te quedaste toda la tarde jugando a la consola, este es el final de esta aventura.</p>\
 	",{
 	tags: ["topic"],
-        optionText: "Prefiero quedarme en casa hoy bro",
+        optionText: "Prefiero quedarme en casa hoy bro.",
         displayOrder: 4,
+		heading: "Final 1: Te quedas en casa y perdiste la aventura."
 	}
 	),
 	trastero: new undum.SimpleSituation(
@@ -154,7 +155,10 @@ undum.game.situations = {
 	"
 	),
 	espada: new undum.SimpleSituation(
-	"<p>Escoges la espada láser.</p>",
+	"<p>Coges la espada láser en tu mano y la enciendes ante ti, y conforme se enciende vienen recuerdos a tu mente de cuando jugabas con ella luchando contra tus amigos con otras espadas de juguete.\
+	Haces un corte diagonal con ella al aire para probar el sonido y no suena por las pilas gastadas, decides llevártela a tu cuarto y arreglarlo por el recuerdo.\
+	Luego vuelves a dejar todo colocado en el trasero y cuando te das cuenta ya es la hora de comer y la comida está lista. Pones la mesa y <a href='tarde'>comes con tu familia.</a>\
+	</p>",
 	{
 	tags: ["objetos"],
         optionText: "Eliges la espada láser.",
@@ -165,7 +169,10 @@ undum.game.situations = {
 	}
 	),
 	sombrero: new undum.SimpleSituation(
-	"<p>Escoges el sombrero vaquero.</p>",
+	"<p>Recoges el polvoriento sombrero y le quitas el polvo con la mano mientras lo admiras recordando las pelis de vaqueros que veías con tus abuelos y cuando fuisteis a un parque temático de vaqueros.\
+	Te llevas el sombrero para limpiarlo y una vez lo limpias te lo pones y te queda bien dentro de lo que cabe y decides quedártelo en tu cuarto.\
+	Luego vuelves a dejar todo colocado en el trasero y cuando te das cuenta ya es la hora de comer y la comida está lista. Pones la mesa y <a href='tarde'>comes con tu familia.</a>\
+	</p>",
 	{
 	tags: ["objetos"],
         optionText: "Eliges el sombrero vaquero.",
@@ -176,7 +183,10 @@ undum.game.situations = {
 	}
 	),
 	cinturon: new undum.SimpleSituation(
-	"<p>Escoges el cinturón naranja de karate.</p>",
+	"<p>Recoges el cinturón naranja mal recogido lo estiras y ves cómo tiene arrugas y está bastante polvoriento, te lo intentas enrollar alrededor de la cintura pero ya no te queda bien.\
+	 Lavas el cinturón, lo doblas y lo dejas en tu cuarto admirándolo y recordando cuando entrenabas en el dojo hace tiempo.\
+	Luego vuelves a dejar todo colocado en el trasero y cuando te das cuenta ya es la hora de comer y la comida está lista. Pones la mesa y <a href='tarde'>comes con tu familia.</a>\
+	</p>",
 	{
 	tags: ["objetos"],
         optionText: "Eliges el cinturón de karate.",
@@ -186,6 +196,63 @@ undum.game.situations = {
             }
 	}
 	),
+	
+	tarde: new undum.SimpleSituation(
+	"<p>Tras recoger la mesa y fregar los platos, te duchas, te vistes, recoges tus cosas y sales de casa hacia donde quedaste con tus amigos.\
+	<a href='hub3'>Llegas a dónde quedastéis.</a>\
+	</p>",
+	),
+	cinema: new undum.SimpleSituation(
+	"<p>Entráis al cine decidís ver la película de Batman, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>palomitas</a> o <a class = once href='./mejora-suerte'>nachos</a>, y de bebida <a class = once href='./mejora-carisma'>7up</a> o <a class = once href='./empeora-suerte'>cocacola.</a> </p>",
+	{
+		tags: ["parte3"],
+        optionText: "Vas al cine",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return character.qualities.cine > 0;
+            },
+		actions: {
+                'mejora-carisma': function(character, system, action) {
+                    system.setQuality("carisma", character.qualities.carisma+1);
+                },
+				'mejora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
+                },
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                },
+				'empeora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte-1);
+                }
+            }
+	}
+	),
+	teatr: new undum.SimpleSituation(
+	"<p>Entráis al teatro y vais a ver Cats, tras esto te acercas al mostrador de comida y piensas en comprar <a class = once href='./mejora-destreza'>gominolas</a> o <a class = once href='./mejora-suerte'>dulces</a>, y de bebida <a class = once href='./mejora-carisma'>batido</a> o <a class = once href='./empeora-suerte'>cerveza.</a> </p>",
+	{
+		tags: ["parte3"],
+        optionText: "Vas al teatro",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.teatro > 0;
+            },
+		actions: {
+                'mejora-carisma': function(character, system, action) {
+                    system.setQuality("carisma", character.qualities.carisma+1);
+                },
+				'mejora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte+1);
+                },
+				'mejora-destreza': function(character, system, action) {
+                    system.setQuality("destreza", character.qualities.destreza+1);
+                },
+				'empeora-suerte': function(character, system, action) {
+                    system.setQuality("suerte", character.qualities.suerte-1);
+                }
+            }
+	}
+	),
+	espec: new undum.SimpleSituation(),
 };
 
 // ---------------------------------------------------------------------------
