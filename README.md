@@ -1,140 +1,45 @@
-# Undum
+# Práctica 2 Desarrollo ágil
+Aquí expondré la información requerida para la práctica 2. Se ha cambiado el nombre del archivo .html inicial a index.html. El archivo en .js en el que está la parte principal del juego lo he renombrado como Memento.game.js. Los archivos .css se han modificado poco por lo que no los he renombrado.
+## Autor
+Ruiz Fernández Manuel 
+Correo: mrf00020@red.ujaen.es
+Estudiante de ingeniería informática en la Escuela Politécnica superior de Jaén.
+ # 1.  Título y descripción del juego
+ ### Memento:  
+ El juego va sobre los recuerdos y nostalgia de tu personaje entorno a ciertas películas y actividades relacionabas que realizaba con su familia y amigos. Además de la creación de un nuevo recuerdo entorno a la música. En general hay 3 decisiones grandes sobre, a dónde ir con tus amigos esta tarde, qué objeto recoger que te trae recuerdos y qué hacer dentro de un sueño que tienes relacionado con ese objeto. Con eso sumado a tus características que influenciarán en las decisiones posibles obtendrás varios finales.
+### Situaciones Desarrolladas en el juego:
+Voy a poner las situaciones básicas desarrolladas, a partir de estas se generan nuevas decisiones que influencian la historia.
+ - start: redirige a inicio que es donde realmente inicia el juego.
+ - inicio: te levantas y puedes jugar con tu perro, que sube tu carisma, o desayunar, que cambia de situación.
+ - desayuno: puedes desayunar dos tipos de cereales, uno te sube la suerte y otro la destreza. A partir te llaman al teléfono fijo que cambia la situación.
+ - llamada: Tu amigo te llama para quedar esa tarde, da lugar a 4 decisiones cada una con una situación.
+ - cine: quedas con tu amigo en ir al cine esa tarde, tienes que subir al trastero para ayudar a tu madre.
+ - teatro: quedas con tu amigo en ir al teatro esa tarde, tienes que subir al trastero para ayudar a tu madre.
+ - espectaculohielo: quedas con tu amigo en ir a un espectáculo de patinaje sobre hielo esa tarde, tienes que subir al trastero para ayudar a tu madre.
+ - concer: quedas con tu amigo para ir a un concierto esa misma tarde, no subes al trastero y no escoges objeto. Vas al concierto y según tus stats consigues unos finales u otros.
+ - trastero: te deja elegir entre la espada láser y el sombrero vaquero, según el que elijas tendrás un sueño u otro.
+ - guerragalaxias: Da lugar a la aventura en el universo de star wars dentro de tu sueño si cogiste la espada láser.
+ - cowboy: Da lugar a la aventura en el lejano oeste dentro de tu sueño si cogiste el sombrero de cowboy.
 
-Undum is a game framework for building a sophisticated form of
-hypertext interactive fiction.
-
-If that means nothing to you, then let's go back a few steps. Remember
-those Choose Your Own Adventure, or Fighting Fantasy books? Where you
-got to choose what your character does next? Well if you think of that
-in a web-page you have hypertext interactive fiction, or HIF. Instead
-of turning to a particular page, you click a link, and the next bit of
-content appears.
-
-The problem is that those kinds of games are pretty limited. Every
-time the player does something, the story could go in different
-directions. So the author has to either write masses of branches, or
-else the decisions you make as a player have to be relatively short
-lived. If you played CYOA books you'll know that the wrong move either
-ended the story pretty quickly, or else it didn't really matter what
-you did because you'd end up at the same place.
-
-To beat this limitation, Undum allows you to make the output
-dynamic. It allows you to keep track of what has happened to the
-character (any kinds of data, in fact), and to then change the text
-that gets output accordingly. Effectively it is like writing a CYOA
-page that is different each time you read it. This allows for far
-richer and more rewarding game design.
-
-Undum is a pure client client-side library. It consists of a HTML file
-and three Javascript files. The HTML file uses a nice bit of styling,
-so there's a bunch of CSS and images in the default package too, but
-that can be replaced if you want. To create your own game, you edit
-the HTML file a little (mainly just changing the title and author),
-and edit one of the Javascript files.
-
-Because the game is written in Javascript, you get the full power of a
-dynamic and efficient programming language. This isn't a CYOA
-scripting system with limited functionality. You can take control of
-anything you want. Or you can just keep things simple using a bunch of
-simple functions provided by Undum.
-
-
-## Compatibility
-
-Undum is designed for HTML5 and CSS3 browsers. It has been tested on
-Firefox 3.6, Chrome 5, and Safari 5. Older browsers may work okay too,
-but some of the animation won't work, the styles may render poorly,
-and saving and loading of games is unlikely to work. Anyone who wants
-to hack around with it and make it work more widely is welcome. Just
-fork this project on Github.
-
-The local storage system on some browsers does not work when loading a
-page from your hard drive. To test your game when developing it, you
-may want to start up a simple local webserver. I have found that
-Chrome seems to reliably provide local storage for local
-development. It also has excellent Javascript debugging tools.
-
-
-## Getting Started
-
-1. Download Undum. Use the 'download zip' link in the right column of
-   this page.
-
-2. Unzip Undum somewhere on your hard-drive.
-
-3. Open games/tutorial.html in your browser, and play through the tutorial.
-
-4. Copy games/tutorial.html to a file that reflects your game name.
-
-5. Edit your HTML file and add the title, author and description of
-   the game you want to write. At the bottom of the file change the
-   name of `tutorial.game.js` to something else (by convention
-   *your-game-name*`.game.js`.
-
-6. Copy `tutorial.game.js` to the file name you chose in the last
-   step. Open it and begin creating your game.
-
-
-Reference documentation, including full API details, is at
-[http://idmillington.github.io/undum/](http://idmillington.github.io/undum/),
-and is also included in the repository.
-
-The source code for all the files is also heavily commented, so if you
-get stuck, go in and read it.
-
-
-## Deploying
-
-To deploy your game, just upload your HTML file and the `media` folder
-to your webserver. You can serve several games with the same look and
-feel from the same directory. You need a different HTML file for each
-game, and each one should load the correct `.game.js` file at the
-end. Add any media you need for your game (images, audio, video), and
-the remaining files will be reused.
-
-For example, if you had 3 games: `episode1`, `episode2`, and
-`christmas-special`. You'd have a directory structure:
-
-    episode1.html
-    episode2.html
-    christmas-special.html
-    media/
-        css/ ...
-        img/ ...
-        js/
-            jquery-1.4.2.min.js
-            undum.js
-        games/
-            episode1/
-                episode1.game.js
-                ... media for episode 1 ...
-            episode2/
-                episode2.game.js
-                ... media for episode 1 ...
-            christmas-special/
-                christmas-special.game.js
-                ... media for christmas special ...
-
-This assumes you use the same directory lay out that I do. You are
-welcome to change things around, of course, as long as you work and
-change the references.
-
-
-## Undum
-
-The name `undum` came from a little project that preceded this code
-base. In 2008 I put together a simple browser based game. It was
-narrative, but used the grind-based mechanics of games such as
-Farmville and Mafia Wars. Because of the grinding, I called it
-Carborundum, which I found I couldn't type at speed, so it became
-Undum. The code has changed out of all recognition since them, as the
-grind-based game moved to Flash. But the name stuck for the Javascript
-framework.
-
-
-## License
-
-The code, documentation, styles, design and images are all distributed
-under the MIT license. This permits you to modify and use them, even
-for commercial use. A copy of the MIT license is found in the LICENSE
-file.
+ ## 2. URL al tablero Trello
+ Enlace al tablero:  https://trello.com/b/ihuzulaA/práctica-2-dágil
+ ## 3. URL a GitHub: 
+ Enlace al repositorio en github: https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020
+## 4. Capturas de Pantalla Tablero Trello: 
+### Captura Inicial.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/InicioTrello.JPG?raw=true)
+### Captura del día 13.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/13-03.PNG?raw=true)
+### Captura del día 15 por la mañana.
+![enter image description here](https://raw.githubusercontent.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/23385ffe4ddd1c688c24158528525d0d8faf3420/capturas/15-03-2022%20ma%C3%B1ana.JPG)
+### Captura del día 15 por la tarde.
+![](https://raw.githubusercontent.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/23385ffe4ddd1c688c24158528525d0d8faf3420/capturas/15-03-2022%20Tarde%20noche.JPG)
+### Captura Final de Trello.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/Final%20Trello.JPG?raw=true)
+## 5. Capturas de Pantalla de la aplicación Telegram:
+### Captura 1.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/Telegram1.JPG?raw=true)
+### Captura 2.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/Telegram2.JPG?raw=true)
+### Captura 3.
+![enter image description here](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-2-mrf00020/blob/master/capturas/Telegram3.JPG?raw=true)
