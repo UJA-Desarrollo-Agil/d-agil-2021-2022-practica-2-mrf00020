@@ -73,7 +73,7 @@ undum.game.situations = {
             }
 			
 		}
-	),
+	), //ESCENA 0
 	llamada: new undum.SimpleSituation(
 	"<p>-'¿Quién es?' </p>\
 	<p>-'Hey bro, soy Jc, te apetece hacer algo esta tarde? Tengo ganas de cine o algo así'</p>\
@@ -153,16 +153,14 @@ undum.game.situations = {
         displayOrder: 5,
 		heading: "Final 1: Te quedas en casa y perdiste la aventura."
 	}
-	),
+	), //DECISION ESCENA 0
 	trastero: new undum.SimpleSituation(
 	"<p>Al llegar al trastero ves que vas a tener que revolver las cosas para poder dejar la caja donde quiere tu madre.\
 	Te pones a remover las cosas para poder dejar la caja en su sitio y cuando consigues dejarla en su lugar ves una caja abierta con varios objetos dentro.</p>\
 	<p>La espada laser te trae recuerdos de cuando viste las películas de la guerra de las galaxias con tu padre.</p>\
 	<p>El sombrero de vaquero te trae recuerdos de cuando fuiste al desierto de tabernas con tu abuelo y montaste a caballo con él.</p>\
-	<p>El cinturón de karate te recuerda a cuando estuviste en un dojo dos años y fuiste a un torneo.</p>\
 	<p class = transient><img src='media/games/tutorial/espada.jpg' class='float_right'></p>\
 	<p class = transient><img src='media/games/tutorial/sombrero.jpg' class='float_left'></p>\
-	<p class = transient><img src='media/games/tutorial/cinturon.jpg' class='float_right'></p>\
 	<p><a href=hub2>Dudas entre cual de ellos antes de decidir.</a>\
 	</p>\
 	"
@@ -192,20 +190,6 @@ undum.game.situations = {
         displayOrder: 2,
 		exit: function(character, system, to) {
                 system.setQuality("sombrero", character.qualities.sombrero+1);
-            }
-	}
-	),
-	cinturon: new undum.SimpleSituation(
-	"<p>Recoges el cinturón naranja mal recogido lo estiras y ves cómo tiene arrugas y está bastante polvoriento, te lo intentas enrollar alrededor de la cintura pero ya no te queda bien.\
-	 Lavas el cinturón, lo doblas y lo dejas en tu cuarto admirándolo y recordando cuando entrenabas en el dojo hace tiempo.\
-	Luego vuelves a dejar todo colocado en el trasero y cuando te das cuenta ya es la hora de comer y la comida está lista. Pones la mesa y <a href='tarde'>comes con tu familia.</a>\
-	</p>",
-	{
-	tags: ["objetos"],
-        optionText: "Eliges el cinturón de karate.",
-        displayOrder: 3,
-		exit: function(character, system, to) {
-                system.setQuality("cinturon", character.qualities.cinturon+1);
             }
 	}
 	),
@@ -301,35 +285,52 @@ undum.game.situations = {
 	),
 	sueno: new undum.SimpleSituation(
 	"<p>Te sientas en tu asiento y el entrenimiento te estaba gustando hasta que empiezas a sentirte extremadamente cansado, además la luz no ayuda con tanta oscuridad, empiezas a pegar cabezadas mientras nadie te ve y acabas quedándote profundamente dormido.</p>\
+	<p class = transient><img src='media/games/tutorial/cansancio.jpg' class='float_right'></p>\
 	<p><a href='hub4'>Empiezas a soñar profundamente.</a></p>\
 	"
-	),
+	), //INICIOS ESCENA 1
 	guerragalaxias: new undum.SimpleSituation(
+	"<p> Te despiertas por el movimiento brusco de la nave en la que estás embarcado, por el altavoz suena una voz.</p>\
+	<p>- Luke aquí Ban Ned, acabamos de salir del hiperespacio, detecto en el radar varias naves cercanas, ve al puesto de la torreta, creo que son imperiales o piratas.</p>\
+	<p>Tardas un poco en recomponerte y levantarte cuando te das cuenta que eres Luke Skywalker y que te hablaba a ti, registras tu cinturón y ves la misma espada láser que tenías en tu trastero.</p>\
+	<p>Te diriges al puesto de la torreta casi que por intuición, te sientas en los mandos y te pones los cascos para la comunicación con el piloto. Al poco tu compañero dice:</p>\
+	<p>- Confirmado, son piratas, prepárate para el combate, quieren asaltarnos.</p>\
+	<p>- Oído Ban Ned, aquí Luke, en cuanto los tenga a tiro disparo. </p>\
+	<p>En cuanto terminas de hablar te pones a activar la torreta y apuntarla hacia el exterior.</p>\
+	<p class = transient><img src='media/games/tutorial/nave.jpg' class='float_right'></p>\
+	<p>Los piratas empieza a atacar la nave y saltan las alarmas de daños por toda la nave. Ban Ned intenta esquivar como puede pero son demasiados. Por tu parte, te dispones a disparar. <a href='hub7'>¿Usas el ordenador de abordo o usas tu intuición y la fuerza?</a></p>\
+	",
 	{
 		tags: ["dormido"],
-        optionText: "Vas al espectaculo de patinaje en el hielo",
-        displayOrder: 3,
+        optionText: "Elegí la espada láser.",
+        displayOrder: 1,
 		canChoose: function(character, system, host) {
-                return character.qualities.hielo > 0;
+                return character.qualities.espada > 0;
             },
-		actions: {
-                'mejora-carisma': function(character, system, action) {
-                    system.setQuality("carisma", character.qualities.carisma+1);
-                },
-				'mejora-suerte': function(character, system, action) {
-                    system.setQuality("suerte", character.qualities.suerte+1);
-                },
-				'mejora-destreza': function(character, system, action) {
-                    system.setQuality("destreza", character.qualities.destreza+1);
-                },
-				'empeora-suerte': function(character, system, action) {
-                    system.setQuality("suerte", character.qualities.suerte-1);
-                }
-            }
 	}
 	),
-	cowboy: new undum.SimpleSituation(),
-	karate: new undum.SimpleSituation(),
+	cowboy: new undum.SimpleSituation(
+	"<p> Te despiertas por el chirrido de una puerta cercana, abres los ojos y estas sentado en una mecedora con tu sombrero sobre los ojos para poder dormir.\
+	Te recolocas un poco, te levantas y ves que estás en una pequeña habitación con una mecedora y una cama, te miras en un pequeño espejo en la pared.</p>\
+	<p> Tienes una placa de Sheriff, un bigote bien cuidado y una barba incipiente, tu sombrero y un par de pistolas en el cinturón. Al poco de escuchar el chirrido escuchas al otro lado de la puerta:</p>\
+	<p>- Jefe Morgan ya he vuelto, el problema con los Mcalister y esos indios Lakota sigue en pie.</p>\
+	<p>Sales de la habitación y recuerdas sobre ese problema entre granjeros y nativos.\
+	Los Lakotas tienen el derecho legal sobre esas tierras garantizado por el gobierno federal y los Mcalister quieren parte de sus campos para cultivar aunque sea ilegalmente.</p>\
+	<p>- Bill, Bill, Bill creía que con azuzarles al gobierno federal calmarías a esos granjeros, pero veo que esos granjeros son más persistentes de la cuenta, tendremos que ir a darles una visita.</p>\
+	<p>- Bueno, espero que no tengamos que volver más veces, hace una semana que están apunto de dispararse con los nativos.</p>\
+	<p>Te montas en el caballo y <a href='reunion'>te diriges al territorio en disputa</a> junto a tu ayudante.</p>\
+	<p class = transient><img src='media/games/tutorial/acaballo.jpg' class='float_right'></p>\
+	",
+	{
+		tags: ["dormido"],
+        optionText: "Elegí el sombrero de vaquero.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.sombrero > 0;
+            },
+	}
+	),
+	//ESCENAS 0 CONCIERTO
 	helter: new undum.SimpleSituation(
 	"<p>Cuando llegas a la entrada de la sala de conciertos tu colega ya te está esperando, os saludáis y entráis.</p>\
 	<p>Hay bastante gente que conocéis, aún no ha empezado el concierto, te acercas a la barra y te pides un <a class = once href='./mejora-destreza'>7up</a> y/o un <a class = once href='./mejora-suerte'>cocktail sin alcohol.</a>\</p>\
@@ -354,7 +355,7 @@ undum.game.situations = {
 	",
 	{
 		tags: ["concierto1"],
-			optionText: "Te caes al suelo y te haces daño",
+			optionText: "Te caes al suelo y te haces daño.",
 			displayOrder: 1,
 			canChoose: function(character, system, host) {
                 return character.qualities.suerte <=3;
@@ -373,7 +374,7 @@ undum.game.situations = {
 	",
 	{
 		tags: ["concierto1"],
-			optionText: "Tienes mucha suerte y alguien te agarra",
+			optionText: "Tienes mucha suerte y alguien te agarra. Necesitas Suerte 4.",
 			displayOrder: 2,
 			canChoose: function(character, system, host) {
                 return character.qualities.suerte >3;
@@ -385,6 +386,7 @@ undum.game.situations = {
 		}
 	}
 	),
+	
 	empujon: new undum.SimpleSituation(
 	"<p>El chaval se pega una buena caída contra el suelo aunque no se hace mucho daño, paráis un momento el concierto, él se va al baño, ve que no le ha pasado nada grave y se queda en una silla escuchando el concierto.</p>\
 	<p>El concierto sigue tras ver que el chaval se encuentra bien, sigues bailando con tus amigos y cuando termina te encuentras algo cansado pero bastante alegre por haber disfrutado tanto de buena música en compañía de tus amigos.</p>\
@@ -408,13 +410,230 @@ undum.game.situations = {
 	",
 	{
 		tags: ["concierto2"],
-			optionText: "Sientes que eres capaz de sujetarlo, lo agarras como puedes.",
+			optionText: "Sientes que eres capaz de sujetarlo, lo agarras como puedes. Necesitas destreza 5.",
 			displayOrder: 2,
 			canChoose: function(character, system, host) {
                 return character.qualities.destreza >4;
             },
 			heading: "Final 4, Good Ending: Te vuelves a casa con una foto de cada uno de los grupos, esta noche ha sido inolvidable, te prometes a ti mismo ir de concierto siempre que puedas."
 	}
+	), //ESCENA 1 SW
+	fuerza: new undum.SimpleSituation(
+	"<p>Al usar la fuerza para poder sentir mejor la presencia de las naves aciertas a casi todas las naves con la torreta y solo un par de naves escapan sin ser destruídas.</p>\
+	<p>Aún así, notas como la nave ha recibido muchos disparos y que algo va mal. A los pocos segundos de parar de disparar Ban Ned te habla por el comunicador:</p>\
+	<p>- Luke, aquí Ban Ned, muy buenos disparos, aunque la nave está hecha chatarra por todos esos piratas, vamos a tener que hacer un aterrizaje de emergencia en el planeta más cercano, esto se puede despresurizar en cualquier momento.</p>\
+	<p>- Oído Ban Ned, yo estoy bien, haz lo que puedas compañero.</p>\
+	<p>La nave da un giro hacia un planeta muy cercano, desde lejos se nota que es un planeta arenoso.</p>\
+	<p class = transient><img src='media/games/tutorial/planeta.png' class='float_right'></p>\
+	<p>La nave cada vez va más rápido hacia el planeta y al entrar en la atmósfera se ve como entró en una tormenta de arena.\
+	La visibilidad es nula pero Ban Ned intenta mantener la navelo más horizontal posible y reducir la velocidad para poder aterrizar de la forma más leve posible.\
+	<a href='aterrizaje'>Te pones los enganches del cinturón del asiento como puedes.</a></p>\
+	",
+		{
+		tags: ["nave"],
+        optionText: "Elegí usar mi intuición y la fuerza para destruir las naves. Necesitas Suerte 4.",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return character.qualities.suerte > 3;
+            },
+		}
+	),
+	ordenador: new undum.SimpleSituation(
+	"<p>Al usar el ordenador de abordo para disparar a las naves no aciertas tanto como para asustarlas o destruirlas a todas. Aún así, Ban Ned, hace una treta para desviarse entre varios asteroides y perderlas de vista.</p>\
+	<p>Notas como la nave ha recibido muchos disparos y que algo va mal. A los pocos segundos Ban Ned te habla por el comunicador:</p>\
+	<p>- Luke, aquí Ban Ned, los hemos despistado, aunque la nave está hecha chatarra por todos esos piratas, vamos a tener que hacer un aterrizaje de emergencia en el planeta más cercano, esto se puede despresurizar en cualquier momento.</p>\
+	<p>- Oído Ban Ned, yo estoy bien, haz lo que puedas compañero.</p>\
+	<p>La nave da un giro hacia un planeta muy cercano, desde lejos se nota que es un planeta arenoso.</p>\
+	<p class = transient><img src='media/games/tutorial/planeta.png' class='float_right'></p>\
+	<p>La nave cada vez va más rápido hacia el planeta y al entrar en la atmósfera se ve como entró en una tormenta de arena.\
+	La visibilidad es nula pero Ban Ned intenta mantener la navelo más horizontal posible y reducir la velocidad para poder aterrizar de la forma más leve posible.\
+	<a href='aterrizaje'>Te pones los enganches del cinturón del asiento como puedes.</a></p>\
+	",
+		{
+		tags: ["nave"],
+        optionText: "Elegí usar el ordenador de abordo para destruir las naves.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.suerte <= 3;
+            },
+		}
+	),
+	aterrizaje: new undum.SimpleSituation(
+	"<p>Notas unas turbulencias enormes hasta que finalmente la nave se estampa contra la arena, gracias al asiento de la cabina que te sujeta no sales volando aunque notas la presión con el choque.\
+	Sales de la cabina como puedes y escuchas a Ban Ned gritar:</p>\
+	<p>- ¡¿Luke estás bien?! ¡¿Sigues vivo?!</p>\
+	<p>- Sí, estoy bien. ¿Y tú? Contestas.</p>\
+	<p>- Voy algo cojo pero vivo.</p>\
+	<p>Vas a donde está Ban Ned y ves como cojea con dolor. La nave mientras se va hundiendo en la arena.Coges a Ban Ned como puedes del hombro y salís de la nave juntos.\
+	Vais a tientas hasta una caverna cercana donde al fin podéis hablar con más tranquilidad.\
+	Al poco de entrar, cierras la caverna con una roca para que no entre más arena aún.</p>\
+	<p>En cuanto la tormenta de arena deja de escucharse tan fuertemente Ban ned enciende una bengala y te dice:</p>\
+	<p>- Estoy bien, solo voy algo cojo, he dejado una baliza de emergencia activada para que vengan a rescatarnos, espero que haya podido llegarles el mensaje que envié antes de entrar en la atmósfera del planeta.</p>\
+	<p>- Eso espero yo también, no me gustaría quedarme aquí mucho tiempo ni mucho menos morir aquí.</p>\
+	<p>En cuanto terminas de hablar se escuchan extraños ruidos al final de la cueva, enciendes el sable láser para defenderte aunque nada te ataca. Ban Ned por su parte saca un blaster de su cinturón.</p>\
+	<p>- Ban Ned, quédate aquí, yo iré a enfrentar a lo que sea eso, no quiero que te ataque a ti y llegar tarde a defenderte.</p>\
+	<p>- Cómo quieras Luke, si vienen a rescatarnos gritaré y espero que el eco ayude, aunque no sé cuándo vendrán.</p> \
+	<p>Te diriges hacia el lugar de donde vienen los ruidos con el sable láser encendido y notas una presencia del lado oscuro, algo familiar pero a la vez extraño.\
+	Finalmente escuchas el sonido de un respirador bastante conocido en la galaxia. Vader, el asesino de tu maestro Obi wan. Aunque ¿cómo es posible que él esté aquí? ¿Acaso sabía dónde ibas a caer con la nave?\</p>\
+	<p>Imposible, tiene que ser alguna proyección o algo similar. Conforme más te acercas más se escucha el respirador de el cyborg oscuro.\
+	 Aunque solo se ve la luz de tu sable azul hasta que escuchas del fondo de la caverna un sable encenderse.</p>\
+	 <p class = transient><img src='media/games/tutorial/vader.gif' class='float_right'></p>\
+	 <p>Miras hacia donde viene el sonido y lo ves en pié con el sable encendido señalándote.</p>\
+	 <p>- Vaya vaya, el piloto que destruyó la estrella de la muerte, al fin tendré mi venganza por esa jugarreta y acabaré contigo</p>\
+	 <p>- Tú mataste a Obi wan y a mi padre, no voy a dejar que hagas lo mismo conmigo.</p>\
+	 <p>- He matado a tantos padres hasta ahora que no importa ya quién fuera, solo sé que tú vas a ser el siguiente</p>\
+	 <p>Vader se lanza hacia ti lanzando un espadazo horizontal que esquivas echándote hacia atrás, empezáis a luchar aunque notas como no es una presencia real, si no algo extraño, como una pesadilla o una proyección.</p>\
+	 <p class = transient><img src='media/games/tutorial/luchavader.gif' class='float_right'></p>\
+	 <p> La lucha está bastante igualada hasta que ves la oportunidad de atacarle en una apertura en sus movimientos. <a href='hub8'>¿Con qué movimiento tratas de atacarle?</a></p>\
+	",
+	),
+	vertical: new undum.SimpleSituation(
+	"<p>Lleno de tranquilidad y determinación lanzas un corte vertical contra vader que se ve entre tu espada y la pared y recibe de lleno el corte.\
+	Esperabas que tu enemigo cayera ante ti pero solamente se desvaneció como la sombra que era.</p>\
+	<p>A los segundos de desvanecerse tu enemigo notas como el aura de la cueva cambia totalmente y sientes que has liberado ese lugar de un mal del lado oscuro.\
+	Vas hacia la salida guiado por tu intuición y la fuerza.\
+	Llegas donde está Ban Ned quien de primeras te apunta con la pistola pero al reconocerte notas su alivio.</p>\
+	<p>- Temía que te hubiera pasado algo, se oía un gran combate.</p>\
+	<p>- Así era, aunque gané, espero que nos recojan pronto.</p>\
+	<p>Te recuestas a su lado y él saca una tableta de chocolate que compartís. Al poco rato se la tormenta amaina y cesa el ruido, apartas la piedra de la entrada y ves la nave estrellada a los lejos.\
+	Y a los segundos a lo lejos una nave acercarse hacia vuestra nave.\
+	Esperas lo peor pero notas que es una nave de los Rebeldes que vienen a rescataros.</p>\
+	<p>Sales afuera y haces señales, tu compañero sale tras de ti, os subís a la nave. Al poco de sentarte a descansar te duermes y <a href='susto'>despiertas otra vez.</a> </p>\
+	",
+	{
+		tags: ["espadazo"],
+        optionText: "Elegí usar un corte en vertical. Necesitas destreza 4.",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return character.qualities.destreza > 3;
+            },
+			exit: function(character, system, to) {
+                system.setQuality("victoria", character.qualities.victoria+1);
+            }
+		}
+	),
+	horizontal: new undum.SimpleSituation(
+	"<p>Llevado por tu ira y deseos de venganza lanzas un corte horizontal contra vader que él prevé y te contraataca antes de que puedas desviarlo o esquivarlo.\
+	El golpe te da y te quedas en shock, todo se vuelve negro y <a href='susto'>despiertas otra vez.</a></p>",
+		{
+		tags: ["espadazo"],
+        optionText: "Elegí usar un corte en horizontal.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.destreza <= 3;
+            },
+		}
+	),
+	//ESCENA 1 COWBOY
+	reunion: new undum.SimpleSituation(
+	"<p>Llegas al terreno y ves a los indios y granjeros insultándose en un círculo con caras de pocos amigos. Mandas a tu ayudante a tranquilizar a los nativos mientras tú haces lo propio con los Mcalister. Te diriges a los hermanos mayores de la familia que al verte se dirigen hacia ti.</p>\
+	<p>- Saludos Shean y Lucian Mcalister, nos conocemos desde hace más de 15 años cuando vine aquí tras la guerra como ayudante del sheriff, creo que ya hemos tenido más que suficientes años juntos como para tener respeto mutuamente. Ya sabéis a qué vengo.</p>\
+	<p>- Sheriff Morgan, no vamos a dejar que esos indios se queden con las tierras de nuestro bisabuelo, por mucho que él renunciase a ellas hace 50 años, nosotros no lo haremos. Llevamos aquí ya varias generaciones y necesitamos de esas tierras, lo sabes.</p>\
+	<p>- Por más que queráis tener esas tierras, a nivel federal les pertenecen a los Lakota, le fueron requisadas a vuestro abuelo a cambio de una cuantiosa suma con la que compró otras tierras, lo sabéis tan bien como yo.</p>\
+	<p>- Aún así, las conseguiremos sea por la justicia terrenal o por la providencia de dios con nuestras armas. Esos indios son paganos. No merecen esas tierras.</p>\
+	<p>- Por más que creáis eso, esas tierras les pertenecen. Si tratáis de luchar en los tribunales el gobierno les dará la razón y si les atacáis tendré que llamar a instancias superiores y seréis bandidos en vuestra propia tierra</p>\
+	<p><a href='hub9'>¿Convencerán tus argumentos a los granjeros y podrás parar el conflicto?</a></p>\
+	",
+	),
+	
+	positivo: new undum.SimpleSituation(
+	"<p>Los Mcalister se lo piensan un rato pero acaban cediendo al ver que están en una encrucijada que les podría costar bastante si se chocan contra el gobierno.</p>\
+	<p>Vas con tu compañero y tranquilizáis a los Lakota, estos te creen pues te ven como un hombre de honor y alguien que cumple con la ley y con su palabra.\
+	Tú y tu ayudante volvéis al poblado para encontrar que están asaltando el banco.</p>\
+	<p class = transient><img src='media/games/tutorial/forajido.jpg' class='float_right'></p>\
+	<p>Son una banda de forajidos de otro estado llamados Zorros del desierto y tienen de rehén al recepcionista del banco y han herido al guardia.</p>\
+	<p>Son bastantes pero una parte de los habitantes del pueblo está a la ofensiva, el pueblo está apunto de convertirse en una batalla campal.</p>\
+	<p>Su jefe Alexander el Rojo es conocido por hacer asaltos limpios sin matar a nadie y escapando a toda velocidad aunque parece que esta vez se le ha truncado la situación.</p>\
+	<p>Cuando llegas al banco tratas de calmar la situación y hablar con el jefe de la banda.</p>\
+	<p>- Aquí el jefe Morgan, entregaos, tenéis a todo el pueblo arma en mano, no va a ser algo limpio, aún estáis a tiempo de salir con vida de esta.</p>\
+	<p>- Jefe Morgan, somos rápidos y buenos disparando, no pienso dejar que me atrapen sin al menos dar la cara, sé que no me ahorcarían pero iría preso bastante tiempo y ya estuve una vez en la cárcel, no pienso volver ahí.</p>\
+	<p>- Te ofrezco un trato Alexander, un duelo, tú contra mí, si te gano te escapas con tus compañeros, si no, os entregaréis, depondréis las armas y yo no os trataré severamente.\
+	Pondré en mi informe que os habéis entregado voluntariamente y que dado que el guardia del banco sigue vivo no os condenarán a perpetua ni a muerte.</p>\
+	<p>Se oyen discusiones dentro del banco hasta que finalmente Alexander sale con dos pistolas en el cinturón dispuesto al duelo.</p>\
+	<p>- Aceptamos el desafío Sheriff, espero que tanto tú como tu pueblo cumpláis con lo dicho y nos ahorremos la carnicería.</p>\
+	<p>- Que así sea Rojo, Bill, cuenta hasta tres y no te entrometas, si este es mi final que así sea por mis vecinos y amigos.</p>\
+	<p>Bill tiembla de rabia por la situación pero empieza a contar, mientras te llevas la mano a la pistola derecha del cinturón, a la vez Rojo hace lo mismo.</p>\
+	<p>1</p>\
+	<p>2</p>\
+	<p>Antes de que llegue a 3 <a href='hub10'>disparas al forajido.</a></p>\
+	",
+	{
+		tags: ["granjero"],
+        optionText: "Tus argumentos convencen a los granjeros.",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return character.qualities.carisma > 3;
+            },
+		
+	}
+	),
+	
+	negativo: new undum.SimpleSituation(
+	"<p>Los Mcalister se enfadan porque creen que los tomas por débiles, juran que acabarán con esos paganos y se marchan indignados.</p>\
+	<p>Tú vas con tu compañero a tranquilizar a los Lakota pero estos al ver el resultado de las negociaciones prometen defenderse y desenterrar el hacha de guerra.\
+	Ya perdieron mucha gente y tierras en el pasado, no permitiran que les vuelva a pasar sea como sea. Esto te hace perder un poco la fe en la diplomacia y ves que necesitarás ayuda federal.\
+	Tú y tu ayudante volvéis al poblado para encontrar que están asaltando el banco.</p>\
+	<p class = transient><img src='media/games/tutorial/forajido.jpg' class='float_right'></p>\
+	<p>Son una banda de forajidos de otro estado llamados Zorros del desierto y tienen de rehén al recepcionista del banco y han herido al guardia.</p>\
+	<p>Son bastantes pero una parte de los habitantes del pueblo está a la ofensiva, el pueblo está apunto de convertirse en una batalla campal.</p>\
+	<p>Su jefe Alexander el Rojo es conocido por hacer asaltos limpios sin matar a nadie y escapando a toda velocidad aunque parece que esta vez se le ha truncado la situación.</p>\
+	<p>Cuando llegas al banco tratas de calmar la situación y hablar con el jefe de la banda.</p>\
+	<p>- Aquí el jefe Morgan, entregaos, tenéis a todo el pueblo arma en mano, no va a ser algo limpio, aún estáis a tiempo de salir con vida de esta.</p>\
+	<p>- Jefe Morgan, somos rápidos y buenos disparando, no pienso dejar que me atrapen sin al menos dar la cara, sé que no me ahorcarían pero iría preso bastante tiempo y ya estuve una vez en la cárcel, no pienso volver ahí.</p>\
+	<p>- Te ofrezco un trato Alexander, un duelo, tú contra mí, si te gano te escapas con tus compañeros, si no, os entregaréis, depondréis las armas y yo no os trataré severamente.\
+	Pondré en mi informe que os habéis entregado voluntariamente y que dado que el guardia del banco sigue vivo no os condenarán a perpetua ni a muerte.</p>\
+	<p>Se oyen discusiones dentro del banco hasta que finalmente Alexander sale con su pistola en el cinturón dispuesto al duelo.</p>\
+	<p>- Aceptamos el desafío Sheriff, espero que tanto tú como tu pueblo cumpláis con lo dicho y nos ahorremos la carnicería.</p>\
+	<p>- Que así sea Rojo, Bill, cuenta hasta tres y no te entrometas, si este es mi final que así sea por mis vecinos y amigos.</p>\
+	<p>Bill tiembla de rabia por la situación pero empieza a contar, mientras te llevas la mano a la pistola derecha del cinturón, a la vez Rojo hace lo mismo.</p>\
+	<p>1</p>\
+	<p>2</p>\
+	<p>Antes de que llegue a 3 <a href='hub10'>disparas al forajido.</a></p>\
+	",
+	{
+		tags: ["granjero"],
+        optionText: "Tus argumentos no convencen a los granjeros.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.carisma <= 3;
+            },
+		
+	}
+	),
+	pecho: new undum.SimpleSituation(
+	"<p>Tu disparo le impacta en el pecho pero se oye un sonido metálico, todo era un truco, tenía una plancha metálica en el pecho para soportar el duelo y al poco él te dispara a ti antes de que puedas volver a dispararle.</p>\
+	<p>Su disparo te impacta y antes de que puedas reaccionar todo se funde a negro sin dolor alguno, <a href='susto'>despiertas otra vez.</a></p>\
+	",
+	{	
+		tags: ["duelo"],
+        optionText: "Le disparas al pecho al forajido.",
+        displayOrder: 1,
+		canChoose: function(character, system, host) {
+                return character.qualities.suerte <= 3;
+            },	
+	}
+	),
+	mano: new undum.SimpleSituation(
+	"<p>Tu disparo le impacta en la mano con la que cogía su revolver, su revolver vuela un poco más lejos y le apuntas con la pistola. Él rápidamente con un juego de manos saca un cuchillo de su chaqueta y te lo lanza, impactándote en el brazo.</p>\
+	<p>Simultáneamente tú le vuelves a disparar al ver que se mueve, dándole en una pierna para terminar de desarmarlo.</p>\
+	<p>Rojo acaba en el suelo herido y sus compañeros al verse descabezados dejan las armas y se entregan.\
+	Tus vecinos te llevan al médico del pueblo mientras tu ayudante encierra a los forajidos en las celdas y se lleva a buen recaudo las armas.</p>\
+	<p>El médico os da unos analgésicos tanto a ti como a Rojo mientras os va tratando a cada uno. Las pastillas te hacen efecto en poco rato, te quedas dormido y <a href='susto'>despiertas otra vez.</a></p>\
+	",
+	{
+		tags: ["duelo"],
+        optionText: "Le disparas al forajido a la mano.",
+        displayOrder: 2,
+		canChoose: function(character, system, host) {
+                return character.qualities.suerte > 3;
+            },
+	}
+	),
+	
+	//Inicio Escena 2
+	susto: new undum.SimpleSituation(
+	"<p>Te despiertas sobresaltado por el extraño sueño, intentas disfrutar de la quedada aunque no puedes del todo.\
+	En cuanto termina el evento te vas para casa con alguna excusa y te sientes bastante apesadumbrado.</p>",
 	)
 };
 
@@ -455,8 +674,8 @@ undum.game.qualities = {
 	sombrero:new undum.NonZeroIntegerQuality(
         "Sombrero de vaquero", {priority:"0002", group:'sueno'}
     ),
-	cinturon:new undum.NonZeroIntegerQuality(
-        "Cinturón de karate", {priority:"0003", group:'sueno'}
+	victoria:new undum.NonZeroIntegerQuality(
+        "Victoria", {priority:"0004", group:'sueno'}
     )
 };
 
@@ -484,7 +703,7 @@ undum.game.init = function(character, system) {
 	character.qualities.teatro=0;
 	character.qualities.espada=0;
 	character.qualities.sombrero=0;
-	character.qualities.cinturon=0;
+	character.qualities.victoria=0;
 	//system.OnOffQuality("cine",false);
 	
     system.setCharacterText("<p></p>");
